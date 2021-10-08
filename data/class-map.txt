@@ -1,0 +1,244 @@
+IO.ELEMENTARY.PHOTOS PUBLIC CLASSES
+====================================
+
+WINDOW CLASSES (src)
+--------------------
+
+HdyApplicationWindow
+    └PageWindow
+        ├AppWindow
+        │   ├DirectWindow
+        │   └LibraryWindow
+        │
+        └FullScreenWindow
+
+
+
+PAGE CLASSES (Views)
+--------------------
+
+GtkScrolledWindow
+    └Page
+        ├CheckerboardPage
+        │   ├EventsDirectoryPage
+        │   │   ├MasterEventsDirectoryPage
+        │   │   └SubEventsDirectoryPage
+        │   ├ImportPage
+        │   ├MediaPage
+        │   │   └CollectionPage
+        │   │       ├EventPage
+        │   │       ├NoEventPage
+        │   │       ├FlaggedPage
+        │   │       ├LastImportPage
+        │   │       ├PhotosPage
+        │   │       ├RawsPage
+        │   │       ├SavedSearchPage
+        │   │       ├TagPage
+        │   │       ├VideosPage
+        │   │       └Library.MainPage
+        │   ├OfflinePage
+        │   └TrashPage
+        │
+        └SinglePhotoPage
+            ├EventsDirectoryPage
+            ├ImportQueuePage
+            └SlideshowPage
+
+
+OBJECT CLASSES
+------------------------
+
+Object
+    ├DataObject
+    │   ├DataSource
+    │   │   ├ContainerSource
+    │   │   ├ThumbnailSource
+    │   │   │   ├ImportSource : Indexable
+    │   │   │   ├EventSource
+    │   │   ├MediaSource : Indexable
+    │   │   │   ├PhotoSource
+    │   │   │   ├VideoSource
+    │   │   ├SavedSearch
+    ├Sidebar.Branch
+    │   ├Camera.Branch
+    │   ├Sidebar.RootOnlyBranch
+    ├Sidebar.Grouping : Sidebar.Entry, Sidebar.ExpandableEntry
+    ├Sidebar.SimplePageEntry : Sidebar.Entry, Sidebar.ExpandableEntry
+    ├CameraAccumulator
+    ├MediaAccumulator
+    ├Command : CommandDescription
+    │   ├PageCommand
+    │   │   ├SingleDataSourceCommand
+    │   │   │   ├SinglePhotoTransformationCommand
+    │   │   │   ├GenericPhotoTransformationCommand
+    │   │   │   │   ├RevertSingleCommand
+    │   │   │   │   ├EnhanceSingleCommand
+    │   │   │   │   ├UnEnhanceSingleCommand
+    │   │   │   │   ├StraightenCommand
+    │   │   │   │   ├CropCommand
+    │   │   │   │   ├AdjustColorsSingleCommand
+    │   │   │   │   ├RedeyeCommand
+    │   │   │   ├RotateSingleCommand
+    │   │   │   ├EditTitleCommand
+    │   │   │   ├EditCommentCommand
+    │   │   │   ├SetKeyPhotoCommand
+    │   │   │   ├AdjustDateTimePhotoCommand
+    │   │   │   ├ModifyTagsCommand
+    │   │   │   ├RenameSavedSearchCommand
+    │   │   │   ├DeleteSavedSearchCommand
+    │   │   ├SimpleProxyableCommand
+    │   │   │   ├RenameEventCommand
+    │   │   │   ├EditEventCommentCommand
+    │   │   │   ├RenameTagCommand
+    │   │   │   ├DeleteTagCommand
+    │   │   │   ├NewChildTagCommand
+    │   │   │   ├TagUntagPhotosCommand
+    │   │   ├MultipleDataSourceCommand
+    │   │   │   ├MultiplePhotoTransformationCommand
+    │   │   │   │   ├RevertMultipleCommand
+    │   │   │   │   ├UnEnhanceMultipleCommand
+    │   │   │   │   ├AdjustColorsMultipleCommand
+    │   │   │   ├RotateMultipleCommand
+    │   │   │   ├DuplicateMultiplePhotosCommand
+    │   │   │   ├SetRawDeveloperCommand
+    │   │   │   ├AdjustDateTimePhotosCommand
+    │   │   ├MultipleDataSourceAtOnceCommand
+    │   │   │   ├EditMultipleTitlesCommand
+    │   │   │   ├EditMultipleCommentsCommand
+    │   │   │   ├FlagUnflagCommand
+    │   ├MovePhotosCommand
+    │   │   ├NewEventCommand
+    │   │   ├SetEventCommand
+    │   │   ├MergeEventsCommand
+    │   ├AddTagsCommand
+    │   ├NewRootTagCommand
+    │   ├ReparentTagCommand
+    │   ├TrashUntrashPhotosCommand
+    │   ├DirectoryMonitor
+    │   │   ├LibraryMonitor
+    │   ├Exporter
+
+Gtk.TreeView
+    ├Sidebar.Tree
+
+Gtk.Grid
+    ├Properties
+    │   ├BasicProperties
+    │   ├ExtendedProperties
+    │   ├LibraryProperties
+
+Gtk.ScrolledWindow
+    ├MetadataView
+
+Gtk.Entry
+    ├SearchFilterEntry
+
+Gtk.DrawingArea
+    ├RGBHistogramManipulator
+    
+INTERFACES
+-----------
+CommandDescription : Object
+
+Indexable : DataSource
+Sidebar.Entry : Object
+    ├Sidebar.ExpandableEntry
+    ├Sidebar.SelectableEntry (empty)
+    │   ├Sidebar.PageRepresentative
+    ├Sidebar.RenameableEntry
+    ├Sidebar.DestroyableEntry
+    ├Sidebar.InternalDropTargetEntry
+    ├Sidebar.InternalDragSourceEntry
+
+Sidebar.Contextable
+
+Spit.Pluggable, Spit.Transitions.Descriptor
+
+TrackerAccumulator : Object
+
+ContainerSource, 
+Proxyable :Object
+
+COMPACT CLASSES
+---------------
+BackingFileState
+
+DataCollection
+    ├SourceCollection
+    │   ├DatabaseSourceCollection
+    │   │   ├ContainerSourceCollection
+    │   │   │   ├EventSourceCollection
+    │   ├ImportSourceCollection
+    ├ViewCollection
+    │   ├DirectViewCollection
+
+ExporterUI
+
+LibraryMonitorPool
+
+SourceSnapshot
+SourceBacklink
+SourceHoldingTank
+    ├DatabaseSourceHoldingTank
+    │    ├MediaSourceHoldingTank
+
+SourceProxy
+    ├EventProxy
+
+TransactionController
+    ├MediaSourceTransactionController
+    
+PixelTransformation
+    ├RGBPixelTransformation
+    │   ├TintTransformation
+    │   ├TemperatureTransformation
+    │   ├SaturationTransformation
+    │   ├ExposureTransformation
+    ├HSVPixelTransformation
+    │   ├ExpansionTransformation
+    │   ├ShadowDetailTransformation
+    │   ├HighlightDetailTransformation
+
+
+ViewManager
+    ├CollectionViewManager
+    ├EventDirectoryManager
+
+ViewFilter
+    ├HideImportedViewFilter
+    ├LibraryPhotoPageViewFilter
+    ├SearchViewFilter
+    │   ├EventsDirectorySearchViewFilter
+    │   ├ImportPageSearchViewFilter
+    ├DefaultSearchViewFilter
+    │   ├CollectionSearchViewFilter
+    │   │   ├FlaggedSearchViewFilter
+    │   │   ├PhotosSearchViewFilter
+    │   │   ├RawsSearchViewFilter
+    │   │   ├VideosSearchViewFilter
+    │   ├OfflineSearchViewFilter
+    │   ├TrashSearchViewFilter
+    ├DisabledViewFilter
+
+
+Monitor (/src/core/ViewCollection)
+
+TransitionEffectManager
+TransitionClock
+TextAction
+
+Core.Tracker
+    ├Core.ViewTracker
+    │   ├MediaViewTracker
+    │   ├CameraViewTracker
+
+
+
+PixelTransformer
+RGBHistogram
+IntensityHistogram
+HermiteGammaApproximationFunction
+
+├MonitorImpl : Monitor
+    │   ├ToggleLists : Object
+    │   ├ViewFilter
