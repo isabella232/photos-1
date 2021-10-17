@@ -172,6 +172,16 @@ DataCollection
     ├ViewCollection
     │   ├DirectViewCollection
 
+DatabaseTable
+    ├EventTable
+    ├PhotoTable
+    ├BackingPhotoTable
+    ├SavedSearchDBTable
+    ├TagTable
+    ├TombstoneTable
+    ├VersionTable
+    ├VideoTable
+    
 ExporterUI
 
 LibraryMonitorPool
@@ -185,6 +195,9 @@ SourceHoldingTank
 SourceProxy
     ├EventProxy
 
+TextEntryDialogMediator
+    ├EventRenameDialog
+    
 TransactionController
     ├MediaSourceTransactionController
     
@@ -221,8 +234,9 @@ ViewFilter
     ├DisabledViewFilter
 
 
-Monitor (/src/core/ViewCollection)
-
+ViewCollection.Monitor
+    ├MonitorImpl
+    
 TransitionEffectManager
 TransitionClock
 TextAction
@@ -232,13 +246,8 @@ Core.Tracker
     │   ├MediaViewTracker
     │   ├CameraViewTracker
 
-
-
 PixelTransformer
 RGBHistogram
 IntensityHistogram
 HermiteGammaApproximationFunction
 
-├MonitorImpl : Monitor
-    │   ├ToggleLists : Object
-    │   ├ViewFilter
